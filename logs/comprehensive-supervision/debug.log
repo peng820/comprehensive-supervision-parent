@@ -1,0 +1,108 @@
+2023-05-18 22:11:31.189  INFO 12472 --- [main] com.evi.server.ServerApplication      : Starting ServerApplication using Java 1.8.0_232 on LAPTOP-ZhangP with PID 12472 (E:\work\SeaArea\sourcecode\comprehensive-supervision-parent\server\target\classes started by Lenovo in E:\work\SeaArea\sourcecode\comprehensive-supervision-parent)
+2023-05-18 22:11:31.200  INFO 12472 --- [main] com.evi.server.ServerApplication      : No active profile set, falling back to default profiles: default
+2023-05-18 22:11:33.030  INFO 12472 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-05-18 22:11:33.034  INFO 12472 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-05-18 22:11:33.089  INFO 12472 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 Redis repository interfaces.
+2023-05-18 22:11:33.453  INFO 12472 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration$$EnhancerBySpringCGLIB$$e1ec1af7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:11:33.542  INFO 12472 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroAnnotationProcessorAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroAnnotationProcessorAutoConfiguration$$EnhancerBySpringCGLIB$$e47f599c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:11:33.874  INFO 12472 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'eventBus' of type [org.apache.shiro.event.support.DefaultEventBus] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:11:33.904  INFO 12472 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroAutoConfiguration$$EnhancerBySpringCGLIB$$a7ebbcc7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:11:33.924  WARN 12472 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shiroEventBusAwareBeanPostProcessor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroBeanAutoConfiguration.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authorizationAttributeSourceAdvisor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAnnotationProcessorAutoConfiguration.class]: Unsatisfied dependency expressed through method 'authorizationAttributeSourceAdvisor' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityManager' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAutoConfiguration.class]: Unsatisfied dependency expressed through method 'securityManager' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'missingRealm' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.shiro.realm.Realm]: Factory method 'missingRealm' threw exception; nested exception is org.apache.shiro.spring.boot.autoconfigure.exception.NoRealmBeanConfiguredException
+2023-05-18 22:11:33.943  INFO 12472 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-05-18 22:11:33.981 ERROR 12472 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+No bean of type 'org.apache.shiro.realm.Realm' found.
+
+Action:
+
+Please create bean of type 'Realm' or add a shiro.ini in the root classpath (src/main/resources/shiro.ini) or in the META-INF folder (src/main/resources/META-INF/shiro.ini).
+
+2023-05-18 22:14:05.934  INFO 19988 --- [main] com.evi.server.ServerApplication      : Starting ServerApplication using Java 1.8.0_232 on LAPTOP-ZhangP with PID 19988 (E:\work\SeaArea\sourcecode\comprehensive-supervision-parent\server\target\classes started by Lenovo in E:\work\SeaArea\sourcecode\comprehensive-supervision-parent)
+2023-05-18 22:14:05.938  INFO 19988 --- [main] com.evi.server.ServerApplication      : No active profile set, falling back to default profiles: default
+2023-05-18 22:14:07.503  INFO 19988 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-05-18 22:14:07.508  INFO 19988 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-05-18 22:14:07.564  INFO 19988 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 0 Redis repository interfaces.
+2023-05-18 22:14:07.895  INFO 19988 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration$$EnhancerBySpringCGLIB$$f12ca568] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:14:07.950  INFO 19988 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroAnnotationProcessorAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroAnnotationProcessorAutoConfiguration$$EnhancerBySpringCGLIB$$f3bfe40d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:14:08.174  INFO 19988 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'eventBus' of type [org.apache.shiro.event.support.DefaultEventBus] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:14:08.194  INFO 19988 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroAutoConfiguration$$EnhancerBySpringCGLIB$$b72c4738] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:14:08.213  WARN 19988 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shiroEventBusAwareBeanPostProcessor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroBeanAutoConfiguration.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authorizationAttributeSourceAdvisor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAnnotationProcessorAutoConfiguration.class]: Unsatisfied dependency expressed through method 'authorizationAttributeSourceAdvisor' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityManager' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAutoConfiguration.class]: Unsatisfied dependency expressed through method 'securityManager' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'missingRealm' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.shiro.realm.Realm]: Factory method 'missingRealm' threw exception; nested exception is org.apache.shiro.spring.boot.autoconfigure.exception.NoRealmBeanConfiguredException
+2023-05-18 22:14:08.237  INFO 19988 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-05-18 22:14:08.384 ERROR 19988 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+No bean of type 'org.apache.shiro.realm.Realm' found.
+
+Action:
+
+Please create bean of type 'Realm' or add a shiro.ini in the root classpath (src/main/resources/shiro.ini) or in the META-INF folder (src/main/resources/META-INF/shiro.ini).
+
+2023-05-18 22:19:21.612  INFO 5604 --- [main] com.evi.server.ServerApplication      : Starting ServerApplication using Java 1.8.0_232 on LAPTOP-ZhangP with PID 5604 (E:\work\SeaArea\sourcecode\comprehensive-supervision-parent\server\target\classes started by Lenovo in E:\work\SeaArea\sourcecode\comprehensive-supervision-parent)
+2023-05-18 22:19:21.616  INFO 5604 --- [main] com.evi.server.ServerApplication      : No active profile set, falling back to default profiles: default
+2023-05-18 22:19:22.764  INFO 5604 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-05-18 22:19:22.769  INFO 5604 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-05-18 22:19:22.805  INFO 5604 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2023-05-18 22:19:23.035  INFO 5604 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration$$EnhancerBySpringCGLIB$$684c51b9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:19:23.083  INFO 5604 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroAnnotationProcessorAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroAnnotationProcessorAutoConfiguration$$EnhancerBySpringCGLIB$$6adf905e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:19:23.303  INFO 5604 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'eventBus' of type [org.apache.shiro.event.support.DefaultEventBus] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:19:23.320  INFO 5604 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroAutoConfiguration$$EnhancerBySpringCGLIB$$2e4bf389] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:19:23.334  WARN 5604 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shiroEventBusAwareBeanPostProcessor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroBeanAutoConfiguration.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authorizationAttributeSourceAdvisor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAnnotationProcessorAutoConfiguration.class]: Unsatisfied dependency expressed through method 'authorizationAttributeSourceAdvisor' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityManager' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAutoConfiguration.class]: Unsatisfied dependency expressed through method 'securityManager' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'missingRealm' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.shiro.realm.Realm]: Factory method 'missingRealm' threw exception; nested exception is org.apache.shiro.spring.boot.autoconfigure.exception.NoRealmBeanConfiguredException
+2023-05-18 22:19:23.351  INFO 5604 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-05-18 22:19:23.379 ERROR 5604 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+No bean of type 'org.apache.shiro.realm.Realm' found.
+
+Action:
+
+Please create bean of type 'Realm' or add a shiro.ini in the root classpath (src/main/resources/shiro.ini) or in the META-INF folder (src/main/resources/META-INF/shiro.ini).
+
+2023-05-18 22:24:06.893  INFO 13164 --- [main] com.evi.server.ServerApplication      : Starting ServerApplication using Java 1.8.0_232 on LAPTOP-ZhangP with PID 13164 (E:\work\SeaArea\sourcecode\comprehensive-supervision-parent\server\target\classes started by Lenovo in E:\work\SeaArea\sourcecode\comprehensive-supervision-parent)
+2023-05-18 22:24:06.897  INFO 13164 --- [main] com.evi.server.ServerApplication      : No active profile set, falling back to default profiles: default
+2023-05-18 22:24:07.703  INFO 13164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-05-18 22:24:07.706  INFO 13164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-05-18 22:24:07.739  INFO 13164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2023-05-18 22:24:07.936  INFO 13164 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration$$EnhancerBySpringCGLIB$$698ca0b7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:24:07.981  INFO 13164 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroAnnotationProcessorAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroAnnotationProcessorAutoConfiguration$$EnhancerBySpringCGLIB$$6c1fdf5c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:24:08.163  INFO 13164 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'eventBus' of type [org.apache.shiro.event.support.DefaultEventBus] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:24:08.179  INFO 13164 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroAutoConfiguration$$EnhancerBySpringCGLIB$$2f8c4287] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-05-18 22:24:08.192  WARN 13164 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shiroEventBusAwareBeanPostProcessor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroBeanAutoConfiguration.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authorizationAttributeSourceAdvisor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAnnotationProcessorAutoConfiguration.class]: Unsatisfied dependency expressed through method 'authorizationAttributeSourceAdvisor' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityManager' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAutoConfiguration.class]: Unsatisfied dependency expressed through method 'securityManager' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'missingRealm' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.shiro.realm.Realm]: Factory method 'missingRealm' threw exception; nested exception is org.apache.shiro.spring.boot.autoconfigure.exception.NoRealmBeanConfiguredException
+2023-05-18 22:24:08.205  INFO 13164 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-05-18 22:24:08.228 ERROR 13164 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+No bean of type 'org.apache.shiro.realm.Realm' found.
+
+Action:
+
+Please create bean of type 'Realm' or add a shiro.ini in the root classpath (src/main/resources/shiro.ini) or in the META-INF folder (src/main/resources/META-INF/shiro.ini).
+
