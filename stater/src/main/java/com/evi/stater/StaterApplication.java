@@ -1,18 +1,15 @@
-package com.evi.server;
+package com.evi.stater;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * @author Lenovo
- */
 @SpringBootApplication
-@MapperScan({"com.evi.server.mapper"})
-public class ServerApplication {
+@MapperScan({"com.evi.**.mapper"})
+public class StaterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServerApplication.class, args);
+        SpringApplication.run(StaterApplication.class, args);
     }
 
 }

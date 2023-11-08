@@ -1,6 +1,5 @@
 package com.evi.auth.shiro;
 
-import cn.hutool.core.util.StrUtil;
 import com.evi.auth.shiro.filters.CustomShiroFilterFactoryBean;
 import com.evi.auth.shiro.filters.JwtFilter;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,7 @@ import org.crazycake.shiro.IRedisManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -26,6 +25,7 @@ import javax.annotation.Resource;
 import javax.servlet.Filter;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,10 +38,11 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    @Value("${jeecg.shiro.excludeUrls}")
-    private String excludeUrls;
     @Resource
-    LettuceConnectionFactory lettuceConnectionFactory;
+    private ShiroProperties shiroProperties;
+
+    @Resource
+    RedisProperties redisProperties;
 
     /**
      * Filter Chain定义说明
@@ -55,37 +56,20 @@ public class ShiroConfig {
         CustomShiroFilterFactoryBean shiroFilterFactoryBean = new CustomShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 拦截器
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
-        if (StrUtil.isNotEmpty(excludeUrls)) {
-            String[] permissionUrl = excludeUrls.split(",");
-            for (String url : permissionUrl) {
-                filterChainDefinitionMap.put(url, "anon");
-            }
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        List<String> excludeUrls = shiroProperties.getExcludeUrls();
+        for (String url : excludeUrls) {
+            filterChainDefinitionMap.put(url, "anon");
         }
         // 配置不会被拦截的链接 顺序判断
-        filterChainDefinitionMap.put("/statistic/**", "anon"); //大屏数据放开权限
         filterChainDefinitionMap.put("/sys/cas/client/validateLogin", "anon"); //cas验证登录
         filterChainDefinitionMap.put("/sys/randomImage/**", "anon"); //登录验证码接口排除
         filterChainDefinitionMap.put("/sys/checkCaptcha", "anon"); //登录验证码接口排除
         filterChainDefinitionMap.put("/sys/login", "anon"); //登录接口排除
-        filterChainDefinitionMap.put("/sys/mLogin", "anon"); //登录接口排除
-        filterChainDefinitionMap.put("/sys/dpLogin", "anon"); //登录接口排除
         filterChainDefinitionMap.put("/sys/logout", "anon"); //登出接口排除
-        filterChainDefinitionMap.put("/sys/thirdLogin/**", "anon"); //第三方登录
         filterChainDefinitionMap.put("/sys/getEncryptedString", "anon"); //获取加密串
-        filterChainDefinitionMap.put("/sys/sms", "anon");//短信验证码
-        filterChainDefinitionMap.put("/sys/phoneLogin", "anon");//手机登录
-        filterChainDefinitionMap.put("/sys/user/checkOnlyUser", "anon");//校验用户是否存在
-        filterChainDefinitionMap.put("/sys/user/register", "anon");//用户注册
-        filterChainDefinitionMap.put("/sys/user/querySysUser", "anon");//根据手机号获取用户信息
-        filterChainDefinitionMap.put("/sys/user/phoneVerification", "anon");//用户忘记密码验证手机号
-        filterChainDefinitionMap.put("/sys/user/passwordChange", "anon");//用户更改密码
-        filterChainDefinitionMap.put("/auth/2step-code", "anon");//登录验证码
         filterChainDefinitionMap.put("/sys/common/static/**", "anon");//图片预览 &下载文件不限制token
         filterChainDefinitionMap.put("/sys/common/pdf/**", "anon");//pdf预览
-        filterChainDefinitionMap.put("/sys/minio/download/uuid/**", "anon"); //minio uuid 文件预览 富文本图片回显
-        filterChainDefinitionMap.put("/sys/minio/download/signature/**", "anon"); //minio 签章文件预览 富文本图片回显
-        filterChainDefinitionMap.put("/generic/**", "anon");//pdf预览需要文件
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/doc.html", "anon");
         filterChainDefinitionMap.put("/**/*.js", "anon");
@@ -205,12 +189,12 @@ public class ShiroConfig {
         log.info("===============(2)创建RedisManager,连接Redis..");
         IRedisManager manager;
         RedisManager redisManager = new RedisManager();
-        redisManager.setHost(lettuceConnectionFactory.getHostName());
-        redisManager.setPort(lettuceConnectionFactory.getPort());
-        redisManager.setDatabase(lettuceConnectionFactory.getDatabase());
-        redisManager.setTimeout(0);
-        if (!StringUtils.isEmpty(lettuceConnectionFactory.getPassword())) {
-            redisManager.setPassword(lettuceConnectionFactory.getPassword());
+        redisManager.setHost(redisProperties.getHost());
+        redisManager.setPort(redisProperties.getPort());
+        redisManager.setDatabase(redisProperties.getDatabase());
+//        redisManager.setTimeout(0);
+        if (!StringUtils.isEmpty(redisProperties.getPassword())) {
+            redisManager.setPassword(redisProperties.getPassword());
         }
         manager = redisManager;
         return manager;

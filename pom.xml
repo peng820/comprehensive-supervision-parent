@@ -16,6 +16,7 @@
     <modules>
         <module>common</module>
         <module>server</module>
+        <module>stater</module>
     </modules>
 
     <properties>
