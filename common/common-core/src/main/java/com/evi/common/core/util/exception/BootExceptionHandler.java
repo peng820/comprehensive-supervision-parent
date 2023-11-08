@@ -2,8 +2,6 @@ package com.evi.common.core.util.exception;
 
 import com.evi.common.core.util.R;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authz.AuthorizationException;
-import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.redis.connection.PoolException;
@@ -42,12 +40,6 @@ public class BootExceptionHandler {
 	public R<?> handleDuplicateKeyException(DuplicateKeyException e){
 		log.error(e.getMessage(), e);
 		return R.failed("数据库中已存在该记录");
-	}
-
-	@ExceptionHandler({UnauthorizedException.class, AuthorizationException.class})
-	public R<?> handleAuthorizationException(AuthorizationException e){
-		log.error(e.getMessage(), e);
-		return R.failed(510,"没有权限，请联系管理员授权");
 	}
 
 	@ExceptionHandler(Exception.class)

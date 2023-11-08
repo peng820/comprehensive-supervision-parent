@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.evi.common.core.util.R;
 import com.evi.common.log.dto.SysLogDTO;
+import com.evi.common.log.remote.LogRestApi;
 import com.evi.server.service.SysLogService;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -22,13 +23,14 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RequestMapping("/log")
 @Api(value = "log", tags = "日志管理模块")
-public class SysLogController {
+public class SysLogController implements LogRestApi {
 
     private final SysLogService sysLogService;
 
     /**
      * 简单分页查询
-     * @param page 分页对象
+     *
+     * @param page   分页对象
      * @param sysLog 系统日志
      * @return
      */
@@ -39,6 +41,7 @@ public class SysLogController {
 
     /**
      * 删除日志
+     *
      * @param id ID
      * @return success/false
      */
@@ -49,6 +52,7 @@ public class SysLogController {
 
     /**
      * 批量删除日志
+     *
      * @param ids ID
      * @return success/false
      */
@@ -59,6 +63,7 @@ public class SysLogController {
 
     /**
      * 插入日志
+     *
      * @param sysLog 日志实体
      * @return success/false
      */
@@ -67,4 +72,8 @@ public class SysLogController {
         return R.ok(sysLogService.saveLog(sysLog));
     }
 
+    @Override
+    public void saveLog(SysLogDTO sysLog) {
+        this.save(sysLog);
+    }
 }

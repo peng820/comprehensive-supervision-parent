@@ -6,16 +6,19 @@ import com.evi.common.log.aspect.SysLogAspect;
 import com.evi.common.log.event.SysLogListener;
 import com.evi.common.log.remote.LogRestApi;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.Resource;
 
 /**
  * 日志自动配置
+ * @author Lenovo
  */
 @EnableAsync
 @Configuration
@@ -23,17 +26,13 @@ import javax.annotation.Resource;
 @ConditionalOnWebApplication
 public class LogAutoConfiguration {
 
+	@Lazy
 	@Resource
-	private LogRestApi logRestApi;
-
-	@Bean
-	public LogRestApi remoteLogService(){
-		return logRestApi;
-	}
+	LogRestApi logRestApi;
 
 	@Bean
 	public SysLogListener sysLogListener() {
-		return new SysLogListener(remoteLogService());
+		return new SysLogListener(logRestApi);
 	}
 
 	@Bean

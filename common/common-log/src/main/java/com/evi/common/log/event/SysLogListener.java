@@ -4,7 +4,6 @@ package com.evi.common.log.event;
 
 import com.evi.common.log.dto.SysLogDTO;
 import com.evi.common.log.remote.LogRestApi;
-import com.evi.common.log.remote.RemoteLogService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
