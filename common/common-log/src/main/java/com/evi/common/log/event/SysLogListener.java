@@ -1,8 +1,9 @@
-  
+
 
 package com.evi.common.log.event;
 
 import com.evi.common.log.dto.SysLogDTO;
+import com.evi.common.log.remote.LogRestApi;
 import com.evi.common.log.remote.RemoteLogService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,14 +18,14 @@ import org.springframework.scheduling.annotation.Async;
 @AllArgsConstructor
 public class SysLogListener {
 
-	private final RemoteLogService remoteLogService;
+    private final LogRestApi logRestApi;
 
-	@Async
-	@Order
-	@EventListener(SysLogEvent.class)
-	public void saveSysLog(SysLogEvent event) {
-		SysLogDTO sysLog = event.getSysLog();
-		remoteLogService.saveLog(sysLog);
-	}
+    @Async
+    @Order
+    @EventListener(SysLogEvent.class)
+    public void saveSysLog(SysLogEvent event) {
+        SysLogDTO sysLog = event.getSysLog();
+        logRestApi.saveLog(sysLog);
+    }
 
 }

@@ -1,7 +1,7 @@
 package com.evi.auth.shiro;
 
 import cn.hutool.core.util.StrUtil;
-import com.evi.auth.remote.CommonService;
+import com.evi.auth.remote.UserRestApi;
 import com.evi.common.core.constant.CommonConstant;
 import com.evi.common.core.util.JwtUtil;
 import com.evi.common.core.util.RedisUtil;
@@ -35,7 +35,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Lazy
     @Resource
-    private CommonService commonService;
+    private UserRestApi userRestApi;
 
     @Lazy
     @Resource
@@ -68,12 +68,12 @@ public class ShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         // 设置用户拥有的角色集合，比如“admin,test”
-        Set<String> roleSet = commonService.queryUserRoles(username);
+        Set<String> roleSet = userRestApi.queryUserRoles(username).getData();
         System.out.println(roleSet.toString());
         info.setRoles(roleSet);
 
         // 设置用户拥有的权限集合，比如“sys:role:add,sys:user:add”
-        Set<String> permissionSet = commonService.queryUserAuths(username);
+        Set<String> permissionSet = userRestApi.queryUserAuths(username).getData();
         info.addStringPermissions(permissionSet);
         System.out.println(permissionSet);
         log.info("===============Shiro权限认证成功==============");
@@ -116,7 +116,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
         // 查询用户信息
         log.debug("———校验token是否有效————checkUserTokenIsEffect——————— "+ token);
-        LoginUser loginUser = commonService.getUserByName(username);
+        LoginUser loginUser = userRestApi.getUserByName(username).getData();
         if (loginUser == null) {
             throw new AuthenticationException("用户不存在!");
         }
