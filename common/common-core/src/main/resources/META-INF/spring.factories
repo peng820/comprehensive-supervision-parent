@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-    com.evi.common.auth.AuthAutoConfiguration
+    com.evi.common.core.CoreAutoConfiguration

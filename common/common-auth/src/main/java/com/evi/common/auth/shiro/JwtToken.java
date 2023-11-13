@@ -1,4 +1,4 @@
-package com.evi.auth.shiro;
+package com.evi.common.auth.shiro;
  
 import org.apache.shiro.authc.AuthenticationToken;
 

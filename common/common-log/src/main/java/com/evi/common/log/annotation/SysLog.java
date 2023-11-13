@@ -1,4 +1,4 @@
-  
+
 
 package com.evi.common.log.annotation;
 
@@ -13,10 +13,16 @@ import java.lang.annotation.*;
 @Documented
 public @interface SysLog {
 
-	/**
-	 * 描述
-	 * @return {String}
-	 */
-	String value();
+    /**
+     * 描述
+     *
+     * @return {String}
+     */
+    String value() default "";
 
+    /**
+     * 操作类型
+     * @return
+     */
+    String type() default "";
 }

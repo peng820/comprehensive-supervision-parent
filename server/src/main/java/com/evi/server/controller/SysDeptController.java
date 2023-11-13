@@ -56,7 +56,7 @@ public class SysDeptController {
      * @param id ID
      * @return success/false
      */
-    @SysLog("删除部门")
+    @SysLog(value = "删除部门")
     @DeleteMapping("/{id}")
     public R removeById(@PathVariable Long id) {
         return R.ok(sysDeptService.removeDeptById(id));
@@ -68,7 +68,7 @@ public class SysDeptController {
      * @param sysDept 实体
      * @return success/false
      */
-    @SysLog("编辑部门")
+    @SysLog(value = "编辑部门")
     @PutMapping
     public R update(@RequestBody SysDept sysDept) {
         sysDept.setUpdateTime(LocalDateTime.now());

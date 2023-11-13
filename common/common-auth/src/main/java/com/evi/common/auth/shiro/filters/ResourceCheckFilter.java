@@ -1,4 +1,4 @@
-package com.evi.auth.shiro.filters;
+package com.evi.common.auth.shiro.filters;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.subject.Subject;

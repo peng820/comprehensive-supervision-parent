@@ -1,7 +1,7 @@
-package com.evi.auth.shiro;
+package com.evi.common.auth.shiro;
 
-import com.evi.auth.shiro.filters.CustomShiroFilterFactoryBean;
-import com.evi.auth.shiro.filters.JwtFilter;
+import com.evi.common.auth.shiro.filters.CustomShiroFilterFactoryBean;
+import com.evi.common.auth.shiro.filters.JwtFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
@@ -14,11 +14,11 @@ import org.crazycake.shiro.IRedisManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -52,7 +52,7 @@ public class ShiroConfig {
      * 3、部分过滤器可指定参数，如perms，roles
      */
     @Bean("shiroFilter")
-    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilter(@Qualifier("securityManager") SecurityManager securityManager) {
         CustomShiroFilterFactoryBean shiroFilterFactoryBean = new CustomShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 拦截器
@@ -65,8 +65,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/sys/cas/client/validateLogin", "anon"); //cas验证登录
         filterChainDefinitionMap.put("/sys/randomImage/**", "anon"); //登录验证码接口排除
         filterChainDefinitionMap.put("/sys/checkCaptcha", "anon"); //登录验证码接口排除
-        filterChainDefinitionMap.put("/sys/login", "anon"); //登录接口排除
-        filterChainDefinitionMap.put("/sys/logout", "anon"); //登出接口排除
+        filterChainDefinitionMap.put("/login", "anon"); //登录接口排除
+        filterChainDefinitionMap.put("/logout", "anon"); //登出接口排除
         filterChainDefinitionMap.put("/sys/getEncryptedString", "anon"); //获取加密串
         filterChainDefinitionMap.put("/sys/common/static/**", "anon");//图片预览 &下载文件不限制token
         filterChainDefinitionMap.put("/sys/common/pdf/**", "anon");//pdf预览

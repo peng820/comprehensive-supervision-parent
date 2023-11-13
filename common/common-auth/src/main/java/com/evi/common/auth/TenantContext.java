@@ -1,4 +1,4 @@
-package com.evi;
+package com.evi.common.auth;
 
 import lombok.extern.slf4j.Slf4j;
 

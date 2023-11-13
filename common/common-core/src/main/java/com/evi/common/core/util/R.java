@@ -29,22 +29,7 @@ public class R<T> implements Serializable {
 	public static int OK_CODE = 0;
 
 	//错误
-	public static int FAILED_CODE = 1;
-
-	//未登录
-	public static int NOT_LOGIN = 2;
-
-	//登录已过期
-	public static int PAST_DUE = 3;
-
-	//验证码过期
-	public static int VERIFICATION_CODE = 4;
-
-	//无效的token
-	public static int INVALID_TOKEN = 5;
-
-	//未授权的接口
-	public static int UNAUTHORIZATION = 6;
+	public static int FAILED_CODE = -1;
 
 	@Getter
 	@Setter

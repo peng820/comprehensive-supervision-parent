@@ -1,7 +1,7 @@
-package com.evi.auth.shiro.filters;
+package com.evi.common.auth.shiro.filters;
 
-import com.evi.TenantContext;
-import com.evi.auth.shiro.JwtToken;
+import com.evi.common.auth.TenantContext;
+import com.evi.common.auth.shiro.JwtToken;
 import com.evi.common.core.constant.CommonConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;

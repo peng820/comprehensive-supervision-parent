@@ -59,9 +59,9 @@ public class SysUser implements Serializable {
      */
     private LocalDateTime updateTime;
 
-    private String lockFlag;
+    private Integer lockFlag;
 
-    private String delFlag;
+    private Integer delFlag;
 
 
     @Override

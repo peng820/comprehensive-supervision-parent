@@ -2,6 +2,8 @@ package com.evi.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.evi.server.entity.SysUser;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
@@ -13,4 +15,6 @@ import com.evi.server.entity.SysUser;
  */
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
+    @Select("select * from  sys_user  where username = #{username} and del_flag = 0")
+    SysUser getUserByName(@Param("username") String username);
 }

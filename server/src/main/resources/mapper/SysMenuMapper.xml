@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.evi.server.mapper.SysMenuMapper">
+    <select id="queryByUser" parameterType="Object"  resultType="com.evi.server.entity.SysMenu">
+        SELECT
+            *
+        FROM
+            (
+                SELECT
+                    p.*
+                FROM sys_menu p
+                WHERE p.menu_id IN (
+                    SELECT
+                        a.menu_id
+                    FROM sys_role_menu a
+                             JOIN sys_role b ON a.role_id = b.role_id
+                             JOIN sys_user_role c ON c.role_id = b.role_id
+                             JOIN sys_user d ON d.user_id = c.user_id
+                    where d.username = #{username,jdbcType=VARCHAR}
+                )
+                AND p.del_flag = 0
+            ) h
+        ORDER BY
+            h.sort_order ASC
+    </select>
 
+    <select id="queryRoleMenuByUserId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        SELECT
+            a.menu_id
+        FROM sys_role_menu a
+                 JOIN sys_role b ON a.role_id = b.role_id
+                 JOIN sys_user_role c ON c.role_id = b.role_id
+                 JOIN sys_user d ON d.user_id = c.user_id
+        where d.user_id = #{userId,jdbcType=BIGINT}
+    </select>
 </mapper>

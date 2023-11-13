@@ -23,7 +23,7 @@ public class LoginUser {
 	/**
 	 * 登录人id
 	 */
-	private String id;
+	private String userId;
 
 	/**
 	 * 登录人账号
@@ -83,7 +83,7 @@ public class LoginUser {
     /** 数据权限 */
     private String dataPermission;
 
-    private List<String> processRoles;
+    private List<Long> processRoles;
 
 	/**排序*/
 	private Integer userOrder;

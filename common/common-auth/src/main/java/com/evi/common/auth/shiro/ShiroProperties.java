@@ -1,4 +1,4 @@
-package com.evi.auth.shiro;
+package com.evi.common.auth.shiro;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

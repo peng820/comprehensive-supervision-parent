@@ -1,4 +1,4 @@
-package com.evi.auth.remote;
+package com.evi.common.auth.remote;
 
 import com.evi.common.core.util.R;
 import com.evi.common.core.vo.LoginUser;
@@ -13,19 +13,19 @@ public interface UserRestApi {
      * @param username
      * @return
      */
-    R<Set<String>> queryUserRoles(String username);
+    Set<String> queryUserRoles(String username);
 
     /**
      * 查询用户权限信息
      * @param username
      * @return
      */
-    R<Set<String>> queryUserAuths(String username);
+    Set<String> queryUserAuths(String username);
 
     /**
      * 根据用户账号查询用户信息
      * @param username
      * @return
      */
-    R<LoginUser> getUserByName(String username);
+    LoginUser getUserByName(String username);
 }

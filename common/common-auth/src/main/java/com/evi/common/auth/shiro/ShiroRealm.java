@@ -1,8 +1,9 @@
-package com.evi.auth.shiro;
+package com.evi.common.auth.shiro;
 
 import cn.hutool.core.util.StrUtil;
-import com.evi.auth.remote.UserRestApi;
+import com.evi.common.auth.remote.UserRestApi;
 import com.evi.common.core.constant.CommonConstant;
+import com.evi.common.core.constant.UserConstant;
 import com.evi.common.core.util.JwtUtil;
 import com.evi.common.core.util.RedisUtil;
 import com.evi.common.core.util.SpringContextUtils;
@@ -68,14 +69,13 @@ public class ShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         // 设置用户拥有的角色集合，比如“admin,test”
-        Set<String> roleSet = userRestApi.queryUserRoles(username).getData();
+        Set<String> roleSet = userRestApi.queryUserRoles(username);
         System.out.println(roleSet.toString());
         info.setRoles(roleSet);
 
         // 设置用户拥有的权限集合，比如“sys:role:add,sys:user:add”
-        Set<String> permissionSet = userRestApi.queryUserAuths(username).getData();
+        Set<String> permissionSet = userRestApi.queryUserAuths(username);
         info.addStringPermissions(permissionSet);
-        System.out.println(permissionSet);
         log.info("===============Shiro权限认证成功==============");
         return info;
     }
@@ -93,7 +93,7 @@ public class ShiroRealm extends AuthorizingRealm {
         log.debug("===============Shiro身份认证开始============doGetAuthenticationInfo==========");
         String token = (String) auth.getCredentials();
         if (token == null) {
-            log.info("————————身份认证失败——————————IP地址:  "+ WebUtils.getIP(SpringContextUtils.getHttpServletRequest()));
+            log.info("————————身份认证失败——————————IP地址:  " + WebUtils.getIP(SpringContextUtils.getHttpServletRequest()));
             throw new AuthenticationException("token为空!");
         }
         // 校验token有效性
@@ -115,13 +115,13 @@ public class ShiroRealm extends AuthorizingRealm {
         }
 
         // 查询用户信息
-        log.debug("———校验token是否有效————checkUserTokenIsEffect——————— "+ token);
-        LoginUser loginUser = userRestApi.getUserByName(username).getData();
+        log.debug("———校验token是否有效————checkUserTokenIsEffect——————— " + token);
+        LoginUser loginUser = userRestApi.getUserByName(username);
         if (loginUser == null) {
             throw new AuthenticationException("用户不存在!");
         }
         // 判断用户状态
-        if (loginUser.getLockFlag() != 1) {
+        if (UserConstant.STATUS_DISABLE.compareTo(loginUser.getLockFlag()) == 0) {
             throw new AuthenticationException("账号已被锁定,请联系管理员!");
         }
         // 校验token是否超时失效 & 或者账号密码是否错误
@@ -139,7 +139,7 @@ public class ShiroRealm extends AuthorizingRealm {
      * 3、当该用户这次请求jwt生成的token值已经超时，但该token对应cache中的k还是存在，则表示该用户一直在操作只是JWT的token失效了，程序会给token对应的k映射的v值重新生成JWTToken并覆盖v值，该缓存生命周期重新计算
      * 4、当该用户这次请求jwt在生成的token值已经超时，并在cache中不存在对应的k，则表示该用户账户空闲超时，返回用户信息已失效，请重新登录。
      * 注意： 前端请求Header中设置Authorization保持不变，校验有效性以缓存中的token为准。
-     *       用户过期时间 = Jwt有效时间 * 2。
+     * 用户过期时间 = Jwt有效时间 * 2。
      *
      * @param userName
      * @param passWord
@@ -153,8 +153,8 @@ public class ShiroRealm extends AuthorizingRealm {
                 String newAuthorization = JwtUtil.sign(userName, passWord);
                 // 设置超时时间
                 redisUtil.set(CommonConstant.PREFIX_USER_TOKEN + token, newAuthorization);
-                redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME *2 / 1000);
-                log.debug("——————————用户在线操作，更新token保证不掉线—————————jwtTokenRefresh——————— "+ token);
+                redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME * 2 / 1000);
+                log.debug("——————————用户在线操作，更新token保证不掉线—————————jwtTokenRefresh——————— " + token);
             }
             return true;
         }
